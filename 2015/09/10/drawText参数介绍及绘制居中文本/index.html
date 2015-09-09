@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2015 | Hyman&#39;s Blog</title>
+  <title>drawText参数介绍及绘制居中文本 | Hyman&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="hyman_lee blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hyman's Blog">
-<meta property="og:url" content="http://hyman.com/archives/2015/index.html">
+  <meta name="description" content="自定义view的起步阶段">
+<meta property="og:type" content="article">
+<meta property="og:title" content="drawText参数介绍及绘制居中文本">
+<meta property="og:url" content="http://hyman.com/2015/09/10/drawText参数介绍及绘制居中文本/index.html">
 <meta property="og:site_name" content="Hyman's Blog">
-<meta property="og:description" content="hyman_lee blog">
+<meta property="og:description" content="自定义view的起步阶段">
+<meta property="og:image" content="http://hyman.com/assets/blogimg/drawtext_api.png">
+<meta property="og:image" content="http://hyman.com/assets/blogimg/fontmetrics.png">
+<meta property="og:image" content="http://hyman.com/assets/blogimg/fontmetrics_img.png">
+<meta property="og:updated_time" content="2015-09-09T17:39:11.701Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hyman's Blog">
-<meta name="twitter:description" content="hyman_lee blog">
+<meta name="twitter:title" content="drawText参数介绍及绘制居中文本">
+<meta name="twitter:description" content="自定义view的起步阶段">
   
     <link rel="alternative" href="/atom.xml" title="Hyman&#39;s Blog" type="application/atom+xml">
   
@@ -202,9 +206,7 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-drawText参数介绍及绘制居中文本" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-drawText参数介绍及绘制居中文本" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/09/10/drawText参数介绍及绘制居中文本/" class="article-date">
@@ -220,12 +222,23 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/10/drawText参数介绍及绘制居中文本/">drawText参数介绍及绘制居中文本</a>
+    <h1 class="article-title" itemprop="name">
+      drawText参数介绍及绘制居中文本
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -276,96 +289,62 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/09/01/Android-Studio如何导入第三方主题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android Studio如何导入第三方主题</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
   
 </article>
 
 
-
-
-
-
-
-  
-    <article id="post-Android-Studio如何导入第三方主题" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/09/01/Android-Studio如何导入第三方主题/" class="article-date">
-  	<time datetime="2015-09-01T14:31:14.000Z" itemprop="datePublished">2015-09-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/01/Android-Studio如何导入第三方主题/">Android Studio如何导入第三方主题</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>Android Studio 是Google基于 IntelliJ IDEA 开发的，可以很方便的定义个性化的主题，下面我们来讨论下怎么导入第三方主题包吧。</strong></p>
-<p><strong>下载第三放主题包</strong></p>
-<p>地址：<a href="http://www.ideacolorthemes.org/themes/" target="_blank" rel="external">http://www.ideacolorthemes.org/themes/</a></p>
-<p><strong>将主题包导入到Android Studio</strong></p>
-<p>打开Studio，依次按下面步骤进行导入<br>File—&gt;Importing Settings—&gt;找到刚下载好的主题jar包，点击确认即可。<br><img src="/assets/blogimg/import_setting.png" alt="Image"></p>
-<p><strong>对字体及颜色进行适当修改</strong></p>
-<ol>
-<li>进入到File-&gt;Settings-&gt;Editor-&gt;Colors&amp;Fonts对字体和颜色进行适当的设置。</li>
-<li>可能引入第三方主题后方法体左边可能会出现明显的竖线，去掉方法File-&gt;Settings-&gt;Editor-&gt;General-&gt;Appearance-&gt;将Show vertical indent guides选项取消即可将这些竖线隐藏掉。<br><img src="/assets/blogimg/vertical_indent.png" alt="Image"></li>
-</ol>
-<p>我使用的<em>RecognEyes</em>这个主题，效果如下：<br><img src="/assets/blogimg/effect.png" alt="Image"></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-Studio/">Android Studio</a></li></ul>
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
 
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="drawText参数介绍及绘制居中文本" data-title="drawText参数介绍及绘制居中文本" data-url="http://hyman.com/2015/09/10/drawText参数介绍及绘制居中文本/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
 
 
 
-  
-  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -390,8 +369,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

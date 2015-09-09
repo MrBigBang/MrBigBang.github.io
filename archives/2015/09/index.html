@@ -118,7 +118,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Android-Studio-Theme/" style="font-size: 10px;">Android Studio Theme</a>
+						<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Android-Studio/" style="font-size: 10px;">Android Studio</a>
 					</div>
 				</section>
 				
@@ -204,6 +204,102 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-drawText参数介绍及绘制居中文本" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/09/10/drawText参数介绍及绘制居中文本/" class="article-date">
+  	<time datetime="2015-09-09T17:04:17.000Z" itemprop="datePublished">2015-09-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/10/drawText参数介绍及绘制居中文本/">drawText参数介绍及绘制居中文本</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;在android自定义控件中经常用到canvas.drawText方法来绘制文本，我自己在用这个方法的时候，有很多迷惑，首先对参数含义不明白，其次对实现文本居中的计算公式也不太理解。</p>
+<p>&emsp;&emsp;经过自己查阅相关博文以及请教一些大神，终于算是对这两个疑点理解好了，下面就进行一下总结。</p>
+<p><strong>一、方法参数介绍</strong></p>
+<p>&emsp;&emsp;首先可以看一下API上对这个方法的描述</p>
+<p><img src="/assets/blogimg/drawtext_api.png" alt="drawText API"></p>
+<p>&emsp;&emsp;可以看到，这四个参数依次为：</p>
+<ol>
+<li>text：需要绘制的文本；</li>
+<li>x：文本的水平方向原点距其所在view左边的距离。原点默认是字符串的的最左边，如果设置了paint.setTextAlign(Paint.Align.CENTER);那么原点就是字符串的中心了；</li>
+<li>y：表示文本的baseline距离所在view的顶部的距离;</li>
+<li>paint：用来绘制文本的画笔。</li>
+</ol>
+<p><strong>二、绘制居中文本</strong></p>
+<ol>
+<li>首先需要了解一个类，Paint.FontMetrics</li>
+</ol>
+<p>&emsp;&emsp;这个类的在API中的介绍如下：</p>
+<p><img src="/assets/blogimg/fontmetrics.png" alt="FontMetrics"></p>
+<p><em>baseline为文本的基准线</em></p>
+<ul>
+<li>ascent：是baseline之上至字符最高处的距离；</li>
+<li>bottom：是文本中字符的最下边到baseline的距离，即descent的最大值；</li>
+<li>descent：是baseline之下至字符最低处的距离；</li>
+<li>leading：上一行文本的descent到当前行ascent之间的距离；</li>
+<li>top：是文本中字符的最上边到baseline的距离，即ascent的最大值。</li>
+</ul>
+<p>&emsp;&emsp;注：top、ascent是负数，bottom、descent是正数。具体top、bottom与ascent、descent有什么区别从上面的描述中根本看不出来（上面的描述文字是借用的），如果哪位大神对top和ascent的区别比较清楚不妨指点我一下，<strong>谢谢</strong>。</p>
+<p>&emsp;&emsp;他们之间的关系用图表示如下：（图是借用的）<br><img src="/assets/blogimg/fontmetrics_img.png" alt="fontmetrics_img](FontMetrics"></p>
+<ol>
+<li>文本居中baseline距view上边距的距离计算公式</li>
+</ol>
+<p>&emsp;&emsp;<em>公式一：中心轴线距view顶部的距离-文本高度的一半+|ascent|</em></p>
+<p>&emsp;&emsp;int baseLine = (getMeasuredHeight() - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top;</p>
+<p>&emsp;&emsp;或</p>
+<p>&emsp;&emsp;<em>公式二：中心轴线距view顶部的距离+文本高度的一般-descent</em></p>
+<p>&emsp;&emsp;int baseLine = getMeasuredHeight()/2 + (fontMetrics.descent- fontMetrics.ascent)/2 - fontMetrics.descent;</p>
+<p>&emsp;&emsp;两个公式中top可以用ascent替换，bottom可以用descent替换，成对替换哦。</p>
+<p>&emsp;&emsp;<strong>这两个公式的理解：</strong></p>
+<p>&emsp;&emsp;首先，文本居中的话那么文本的水平中心轴线应该和所在view的水平中心线重合；</p>
+<p>&emsp;&emsp;接下来，descent-ascent的值可以看做文本的高度，这里ascent是负数所以是减号（我之前看着公式弄迷糊了就是因为不清粗ascent是负数）；</p>
+<p>&emsp;&emsp;能力有限，这些都只是整理网上别人写的博文加上自己的理解，如果有不妥的地方还望指正，不胜感激！</p>
+<p>&emsp;&emsp;<em>我参考的博文有：</em><br>&emsp;&emsp;<a href="http://blog.csdn.net/lovexieyuan520/article/details/43153275" target="_blank" rel="external">http://blog.csdn.net/lovexieyuan520/article/details/43153275</a><br>&emsp;&emsp;<a href="http://mikewang.blog.51cto.com/3826268/871765/" target="_blank" rel="external">http://mikewang.blog.51cto.com/3826268/871765/</a><br>&emsp;&emsp;<a href="http://blog.csdn.net/tianjf0514/article/details/7642656" target="_blank" rel="external">http://blog.csdn.net/tianjf0514/article/details/7642656</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-Android-Studio如何导入第三方主题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -249,7 +345,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-Studio-Theme/">Android Studio Theme</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-Studio/">Android Studio</a></li></ul>
 	</div>
 
       
